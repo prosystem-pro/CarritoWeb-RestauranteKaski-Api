@@ -121,7 +121,8 @@ const SubirImagen = async (req, res) => {
       const EntidadExistente = await Servicio.ObtenerPorCodigo(CodigoPropio);
 
       if (EntidadExistente && EntidadExistente[NombreCampoImagen]) {
-        await EliminarImagen(`${process.env.URL_PUBLICA_FIREBASE}${EntidadExistente[NombreCampoImagen]}`);
+        // await EliminarImagen(`${process.env.URL_PUBLICA_FIREBASE}${EntidadExistente[NombreCampoImagen]}`);
+          await EliminarImagen(EntidadExistente[NombreCampoImagen]);
       }
 
       Datos[NombreCampoImagen] = RutaRelativa;
@@ -133,7 +134,8 @@ const SubirImagen = async (req, res) => {
       const EntidadExistente = await Servicio.ObtenerPorCodigo(CodigoPropio);
 
       if (EntidadExistente && EntidadExistente[NombreCampoImagen]) {
-        await EliminarImagen(`${process.env.URL_PUBLICA_FIREBASE}${EntidadExistente[NombreCampoImagen]}`);
+        // await EliminarImagen(`${process.env.URL_PUBLICA_FIREBASE}${EntidadExistente[NombreCampoImagen]}`);
+          await EliminarImagen(EntidadExistente[NombreCampoImagen]);
       }
 
       Datos[NombreCampoImagen] = RutaRelativa;
