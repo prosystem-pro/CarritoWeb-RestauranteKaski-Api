@@ -29,7 +29,11 @@ const Listado = async (Usuario) => {
 };
 
 const ObtenerPorCodigo = async (Codigo) => {
-  return await Modelo.findOne({ where: { [CodigoModelo]: Codigo } });
+  const Registro = await Modelo.findOne({ where: { [CodigoModelo]: Codigo } });
+  if (!Registro) return null;
+  const Dato = Registro.toJSON();
+  Dato.UrlImagen = ConstruirUrlImagen(Dato.UrlImagen);
+  return Dato;
 };
 
 const Buscar = async (TipoBusqueda, ValorBusqueda) => {
