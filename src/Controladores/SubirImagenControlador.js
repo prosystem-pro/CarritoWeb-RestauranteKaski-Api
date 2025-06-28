@@ -151,6 +151,7 @@ const SubirImagen = async (req, res) => {
       await EliminarImagen(ImagenAnterior);
       console.log("Imagen anterior eliminada correctamente:", ImagenAnterior);
     }
+
     // if (Entidad && Entidad[NombreCampoImagen]) {
     //   Entidad[NombreCampoImagen] = ConstruirUrlImagen(Entidad[NombreCampoImagen]);
     // }
