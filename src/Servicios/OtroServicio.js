@@ -1,3 +1,5 @@
+OTRSERVICIO:
+
 const Sequelize = require('sequelize');
 const BaseDatos = require('../BaseDatos/ConexionBaseDatos');
 const Modelo = require('../Modelos/Otro')(BaseDatos, Sequelize.DataTypes);
@@ -21,7 +23,13 @@ const Listado = async () => {
 };
 
 const ObtenerPorCodigo = async (Codigo) => {
-  return await Modelo.findOne({ where: { [CodigoModelo]: Codigo } });
+  const Objeto = await Modelo.findOne({ where: { [CodigoModelo]: Codigo } });
+  if (!Objeto) return null;
+
+  const Dato = Objeto.toJSON();
+  Dato.UrlImagen = ConstruirUrlImagen(Dato.UrlImagen);
+  Dato.UrlImagen2 = ConstruirUrlImagen(Dato.UrlImagen2);
+  return Dato;
 };
 
 const Buscar = async (TipoBusqueda, ValorBusqueda) => {
@@ -38,14 +46,26 @@ const Buscar = async (TipoBusqueda, ValorBusqueda) => {
 };
 
 const Crear = async (Datos) => {
-  return await Modelo.create(Datos);
+  const Objeto = await Modelo.create(Datos);
+  const Dato = Objeto.toJSON();
+
+  Dato.UrlImagen = ConstruirUrlImagen(Dato.UrlImagen);
+  Dato.UrlImagen2 = ConstruirUrlImagen(Dato.UrlImagen2);
+
+  return Dato;
 };
 
 const Editar = async (Codigo, Datos) => {
   const Objeto = await Modelo.findOne({ where: { [CodigoModelo]: Codigo } });
   if (!Objeto) return null;
+
   await Objeto.update(Datos);
-  return Objeto;
+
+  const Dato = Objeto.toJSON();
+  Dato.UrlImagen = ConstruirUrlImagen(Dato.UrlImagen);
+  Dato.UrlImagen2 = ConstruirUrlImagen(Dato.UrlImagen2);
+
+  return Dato;
 };
 
 const Eliminar = async (Codigo) => {
