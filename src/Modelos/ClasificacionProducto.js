@@ -18,7 +18,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     NombreClasificacionProducto: {
       type: DataTypes.STRING(64),
-      allowNull: false,
+      allowNull: true,
       unique: "Uq_CaClasificacionProducto_NombreClasificacionProducto"
     },
     UrlImagen: {
