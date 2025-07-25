@@ -79,6 +79,7 @@ App.use(`/${Ruter}`, PermisosTablasDisponibles);
 App.use(`/${Ruter}`, Pago);
 App.use(`/${Ruter}`, ResumenGeneralPago);
 
+
 App.use(`/${Ruter}`, ModelosTypescriptRuta);
 App.use(`/${Ruter}`, SubirImagenRuta);
 App.use(`/${Ruter}`, Login);
